@@ -7,7 +7,6 @@ import './styles.css';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
-import Notification from './Notification';
 
 class Feedback extends React.Component {
   static defaultProps = {
@@ -64,24 +63,18 @@ class Feedback extends React.Component {
             />
           }
         />
-        {this.state.neutral !== 0 ||
-        this.state.good !== 0 ||
-        this.state.bad !== 0 ? (
-          <Section
-            title="Statistics"
-            children={
-              <Statistics
-                good={this.state.good}
-                neutral={this.state.neutral}
-                bad={this.state.bad}
-                total={this.total()}
-                positivePercentage={this.positivePercentage()}
-              />
-            }
-          />
-        ) : (
-          <Notification message="There is no feedback" />
-        )}
+        <Section
+          title="Statistics"
+          children={
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.total()}
+              positivePercentage={this.positivePercentage()}
+            />
+          }
+        />
       </>
     );
   }
