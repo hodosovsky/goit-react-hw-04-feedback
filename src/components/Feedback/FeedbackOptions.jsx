@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const FeedbackOptions = ({
   onGooodIncrement,
   onNeutralIncrement,
@@ -33,5 +35,11 @@ const FeedbackOptions = ({
     </li>
   </ul>
 );
+
+FeedbackOptions.propTypes = {
+  onGooodIncrement: PropTypes.func.isRequired,
+  onNeutralIncrement: PropTypes.func.isRequired,
+  onBadIncrement: PropTypes.func.isRequired,
+};
 
 export default FeedbackOptions;

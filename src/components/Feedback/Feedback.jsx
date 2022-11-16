@@ -8,8 +8,7 @@ import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
 import Notification from './Notification';
-let total;
-let positivePercentage;
+
 class Feedback extends React.Component {
   static defaultProps = {
     initialValue: 0,
@@ -41,13 +40,15 @@ class Feedback extends React.Component {
   };
 
   total = () => {
-    total = this.state.good + this.state.neutral + this.state.bad;
-    return total;
+    return this.state.good + this.state.neutral + this.state.bad;
   };
 
   positivePercentage = () => {
-    positivePercentage = this.state.good / total;
-    return Math.round(positivePercentage * 100);
+    return Math.round(
+      (this.state.good /
+        (this.state.good + this.state.neutral + this.state.bad)) *
+        100
+    );
   };
 
   render() {
