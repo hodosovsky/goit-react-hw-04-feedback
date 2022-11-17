@@ -2,13 +2,14 @@
 //   console.log('test');
 // };
 
-import React from 'react';
+import { Component } from 'react';
 import './styles.css';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
+import Notification from './Notification';
 
-class Feedback extends React.Component {
+class Feedback extends Component {
   static defaultProps = {
     initialValue: 0,
   };
@@ -20,21 +21,11 @@ class Feedback extends React.Component {
     bad: this.props.initialValue,
   };
 
-  gooodIncrement = () => {
+  onLeaveFeedback = event => {
+    const name = event.target.textContent;
+    console.dir(name);
     this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  neutralIncrement = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  badIncrement = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
+      [name]: prevState[name] + 1,
     }));
   };
 
@@ -53,19 +44,13 @@ class Feedback extends React.Component {
   render() {
     return (
       <>
-        <Section
-          title="Please leave feedback"
-          children={
-            <FeedbackOptions
-              onGooodIncrement={this.gooodIncrement}
-              onNeutralIncrement={this.neutralIncrement}
-              onBadIncrement={this.badIncrement}
-            />
-          }
-        />
-        <Section
-          title="Statistics"
-          children={
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
+          <h2>Statistics</h2>
+          {Object.values(this.state).some(item => item > 0) ? (
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
@@ -73,8 +58,10 @@ class Feedback extends React.Component {
               total={this.total()}
               positivePercentage={this.positivePercentage()}
             />
-          }
-        />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
       </>
     );
   }
