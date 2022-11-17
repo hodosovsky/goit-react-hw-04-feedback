@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 const Notification = ({ message }) => (
-  <section>
-    <p>{message}</p>
-  </section>
+  <>
+    <h4>{message}</h4>
+  </>
 );
 
 export default Notification;

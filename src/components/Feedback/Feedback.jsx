@@ -4,10 +4,10 @@
 
 import { Component } from 'react';
 import './styles.css';
-import FeedbackOptions from './FeedbackOptions';
-import Statistics from './Statistics';
-import Section from './Section';
-import Notification from './Notification';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Statistics from './Statistics/Statistics';
+import Section from './Section/Section';
+import Notification from './Notification/Notification';
 
 class Feedback extends Component {
   static defaultProps = {
@@ -49,7 +49,7 @@ class Feedback extends Component {
             options={Object.keys(this.state)}
             onLeaveFeedback={this.onLeaveFeedback}
           />
-          <h2>Statistics</h2>
+          <h3>Statistics</h3>
           {Object.values(this.state).some(item => item > 0) ? (
             <Statistics
               good={this.state.good}
