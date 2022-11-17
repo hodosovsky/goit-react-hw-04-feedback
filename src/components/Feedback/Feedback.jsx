@@ -22,8 +22,8 @@ class Feedback extends Component {
   };
 
   onLeaveFeedback = event => {
-    const name = event.target.textContent;
-    console.dir(name);
+    const name = event.target.name;
+    console.dir(event.target);
     this.setState(prevState => ({
       [name]: prevState[name] + 1,
     }));
