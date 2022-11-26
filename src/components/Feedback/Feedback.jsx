@@ -7,9 +7,9 @@ import Section from './Section/Section';
 import Notification from './Notification/Notification';
 
 function Feedback({ initialValue }) {
-  const [good, setGood] = useState(initialValue);
-  const [neutral, setNeutral] = useState(initialValue);
-  const [bad, setBad] = useState(initialValue);
+  const [good, setGood] = useState(() => initialValue);
+  const [neutral, setNeutral] = useState(() => initialValue);
+  const [bad, setBad] = useState(() => initialValue);
 
   const stateMap = {
     good: setGood,
